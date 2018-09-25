@@ -1,10 +1,10 @@
 from django.db import models
-
+from activity.models import Activity
 # Create your models here.
 
 
 class Discussion(models.Model):
-    pass
+    activity_id = models.ForeignKey(Activity, on_delete=models.CASCADE)
 
 class Feed(models.Model):
     feed = models.TextField()

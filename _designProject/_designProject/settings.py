@@ -41,6 +41,7 @@ INSTALLED_APPS = [
     'feeds',
     'showcase',
     'activity',
+    'user_accounts',
 ]
 
 MIDDLEWARE = [
