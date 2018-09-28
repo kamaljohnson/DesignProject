@@ -15,9 +15,15 @@ Including another URLconf
 """
 from django.contrib import admin
 from django.urls import path, include
+from _designProject.views import home, login
 from activity import urls
 
 urlpatterns = [
     path('admin/', admin.site.urls),
-    path('activity/', include('activity.urls'))
+    path('activity/', include('activity.urls')),
+    path('login/', login, name='login'),
+    # path(r'^logout/$', views.logout, name='logout'),
+    path('auth/', include('social_django.urls', namespace='social')),
+    path('', home, name='home'),
+
 ]
