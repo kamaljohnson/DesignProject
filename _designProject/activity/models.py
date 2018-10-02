@@ -6,13 +6,15 @@ from user_accounts.models import User
 
 
 class Tag(models.Model):
-    tag = models.CharField(max_length=20, null=True)
+    # Referencing the Tag from where current tag is derived from
+    tag = models.CharField(primary_key=True, max_length=20)
 
     def __str__(self):
         return self.tag
 
 
 class Activity(models.Model):
+    # basic info about the Activity
     name = models.CharField(max_length=100)
     owner = models.ForeignKey(User, on_delete=models.CASCADE)
     tags = models.ForeignKey(Tag, on_delete=models.SET_NULL, null=True)
@@ -30,7 +32,8 @@ class Info(models.Model):
 
 class Idea(models.Model):
     DOC = models.DateField(auto_now=True)  # Date of Creation
-    activity_id = models.ForeignKey(Activity, on_delete=models.CASCADE, null=True)  # The activity associated with the idea
+    activity_id = models.ForeignKey(Activity, on_delete=models.CASCADE,
+                                    null=True)  # The activity associated with the idea
     info_id = models.ForeignKey(Info, on_delete=models.SET_NULL, null=True)
 
 
